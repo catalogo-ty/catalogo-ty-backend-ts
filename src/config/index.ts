@@ -8,8 +8,8 @@ export default {
 
   port: process.env.PORT || '8087',
 
-  path: {
-    users: '/api/users/'
+  pathV1: {
+    users: '/api/v1/users/',
   }
 
 }

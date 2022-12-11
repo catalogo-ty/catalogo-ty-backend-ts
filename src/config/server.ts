@@ -1,5 +1,6 @@
 import express, {Application} from "express";
 import config from ".";
+import  userRoutes  from "../v1/user.routes";
 
 export class Server {
 
@@ -9,7 +10,10 @@ export class Server {
     constructor(){
 
         this.app = express();
-        this.port = config.port 
+        this.port = config.port
+        
+        // Cargar rutas
+        this.routes()
     }
 
     listen(){
@@ -17,6 +21,10 @@ export class Server {
             console.log("Servidor en puerto: " + this.port);
             
         } )
+    }
+
+    routes(){
+        this.app.use(config.pathV1.users, userRoutes);
     }
 
 }
