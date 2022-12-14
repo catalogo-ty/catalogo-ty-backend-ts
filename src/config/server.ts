@@ -2,6 +2,7 @@ import express, {Application, Response, Request} from "express";
 import cors from "cors";
 import  userRoutes  from "../v1/user.routes";
 import config from ".";
+import { dbConnection } from "./db";
 
 export class Server {
 
@@ -12,11 +13,15 @@ export class Server {
 
         this.app = express();
         this.port = config.port;
+        this.database()
         
-        // Cargar rutas
         this.routes();
         this.middlewares()
 
+    }
+
+    async database(){
+        await dbConnection()
     }
 
     listen(){
