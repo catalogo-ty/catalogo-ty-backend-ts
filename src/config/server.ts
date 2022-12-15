@@ -1,6 +1,6 @@
 import express, {Application, Response, Request} from "express";
 import cors from "cors";
-import  userRoutes  from "../v1/user.routes";
+import  userRoutes  from "../v1/routes/user.routes";
 import config from ".";
 import { dbConnection } from "./db";
 
