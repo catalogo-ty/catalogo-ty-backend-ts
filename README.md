@@ -3,6 +3,7 @@
 API desarrollada con Node.js + express para aplicación de ositos TY
 
 ## Dependencias
+* bcryptjs: v2.4.3
 * cors: v2.8.5
 * dotenv: v16.0.3
 * express: v4.18.2

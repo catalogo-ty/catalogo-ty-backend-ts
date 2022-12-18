@@ -18,7 +18,14 @@ router.get('/:id',[
     validateFields
 ], getOneUser)
 
-router.post('/', createNewUser)
+router.post('/',[
+    check('name', 'El nombre es obligatorio').not().isEmpty(), // revisar que no este vacío
+    check('email', 'El correo no es válido').isEmail(),
+    check('email').custom(dbValidators.isValidEmail),
+    check('password', 'La contraseña es requerida con mínimo de 6 caracteres').isLength({ min: 6 }),
+    check('role').custom(dbValidators.isValidRole),
+    validateFields
+], createNewUser)
 
 router.put('/:id', updateOneUser)
 

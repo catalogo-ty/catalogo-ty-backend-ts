@@ -21,11 +21,14 @@ export const getOneUser = async (req: Request, res: Response) => {
     res.json(user)
 }
 
-export const createNewUser = (req: Request, res: Response) => {
+export const createNewUser = async (req: Request, res: Response) => {
 
-    res.json({
-        mgs: "Create a new user"
-    })
+    const user = req.body;
+
+    const newUser = await userService.createNewUser(user);
+    
+    res.status(201).json(newUser)
+
 }
 
 export const updateOneUser = (req: Request, res: Response) => {

@@ -13,10 +13,10 @@ export class Server {
 
         this.app = express();
         this.port = config.port;
-        this.database()
+        this.database();
         
+        this.middlewares();
         this.routes();
-        this.middlewares()
 
     }
 
