@@ -38,3 +38,19 @@ export const createNewUser = async (user: IUser) => {
         console.log(error);
     }
 }
+
+export const updateOneUser = async (id: string, user: IUser, password: string | undefined) => {
+    
+    try {
+        if (user.password) {// nuevo password
+            // Encriptar contraseña
+            user.password = encryptPassword(user.password)
+        }
+        //  {new:true} = Para que retorne el usuario con los nuevos datos
+        const userUpdated = await User.findByIdAndUpdate(id, user, {new:true})
+        return userUpdated
+
+    } catch (error) {
+        console.log(error);
+    }
+}

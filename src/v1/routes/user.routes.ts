@@ -27,7 +27,10 @@ router.post('/',[
     validateFields
 ], createNewUser)
 
-router.put('/:id', updateOneUser)
+router.put('/:id',[
+    check('id').custom(dbValidators.validUserId),
+    validateFields
+], updateOneUser)
 
 router.delete('/:id', deleteOneUser)
 

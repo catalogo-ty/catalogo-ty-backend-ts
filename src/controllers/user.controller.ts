@@ -31,11 +31,14 @@ export const createNewUser = async (req: Request, res: Response) => {
 
 }
 
-export const updateOneUser = (req: Request, res: Response) => {
+export const updateOneUser = async (req: Request, res: Response) => {
 
-    res.json({
-        mgs: "Update use"
-    })
+    const { id } =  req.params
+    const { __id, role ,google, ...resto } = req.body
+
+    const userUpdated = await userService.updateOneUser(id, resto, resto.password)
+
+    res.json(userUpdated)
 }
 
 export const deleteOneUser = (req: Request, res: Response) => {
