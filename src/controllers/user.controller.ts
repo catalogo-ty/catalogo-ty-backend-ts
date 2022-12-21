@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import * as userService from '../services/user.service';
 
-export const getAllUsers = async ( req: Request, res: Response) => {
+export const getAllUsers = async (req: Request, res: Response) => {
 
     const { limit = 5, from = 0 } = req.query
 
@@ -13,31 +13,42 @@ export const getAllUsers = async ( req: Request, res: Response) => {
     })
 }
 
-export const getOneUser = ( req: Request, res: Response) => {
+export const getOneUser = async (req: Request, res: Response) => {
 
-    res.json({
-        mgs: "GET One User"
-    })
+    const { id } = req.params
+
+    const user = await userService.getOneUser(id)
+    res.json(user)
 }
 
-export const createNewUser = ( req: Request, res: Response) => {
+export const createNewUser = async (req: Request, res: Response) => {
 
-    res.json({
-        mgs: "Create a new user"
-    })
+    const user = req.body;
+
+    const newUser = await userService.createNewUser(user);
+    
+    res.status(201).json(newUser)
+
 }
 
-export const updateOneUser = ( req: Request, res: Response) => {
+export const updateOneUser = async (req: Request, res: Response) => {
 
-    res.json({
-        mgs: "Update user"
-    })
+    const { id } =  req.params
+    const { __id, role ,google, ...resto } = req.body
+
+    const userUpdated = await userService.updateOneUser(id, resto, resto.password)
+
+    res.json(userUpdated)
 }
 
-export const deleteOneUser = ( req: Request, res: Response) => {
+export const deleteOneUser = async (req: Request, res: Response) => {
+
+    const { id } =  req.params
+
+    await userService.deleteOneUser(id)
 
     res.json({
-        mgs: "Delete User"
+        msg: `Usuario con ID ${id} borrado`,
     })
 }
 
