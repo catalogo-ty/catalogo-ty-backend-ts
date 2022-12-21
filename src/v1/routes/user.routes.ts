@@ -32,7 +32,10 @@ router.put('/:id',[
     validateFields
 ], updateOneUser)
 
-router.delete('/:id', deleteOneUser)
+router.delete('/:id',[
+    check('id').custom(dbValidators.validUserId),
+    validateFields
+], deleteOneUser)
 
 
 export default router

@@ -41,10 +41,14 @@ export const updateOneUser = async (req: Request, res: Response) => {
     res.json(userUpdated)
 }
 
-export const deleteOneUser = (req: Request, res: Response) => {
+export const deleteOneUser = async (req: Request, res: Response) => {
+
+    const { id } =  req.params
+
+    await userService.deleteOneUser(id)
 
     res.json({
-        mgs: "Delete User"
+        msg: `Usuario con ID ${id} borrado`,
     })
 }
 
