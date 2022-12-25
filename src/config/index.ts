@@ -9,6 +9,8 @@ export default {
 
   pathV1: {
     users: '/api/v1/users/',
+    auth: '/api/v1/auth/',
+
   }
 
 }
