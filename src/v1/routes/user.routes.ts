@@ -8,6 +8,7 @@ import {
     updateOneUser } from "../../controllers/user.controller";
 import * as dbValidators from "../../helpers/db-validators";
 import { validateFields } from "../../middlewares/validate-fields";
+import { validateJWT } from "../../middlewares/validate-jwt";
 
 const router = Router();
 
@@ -33,6 +34,7 @@ router.put('/:id',[
 ], updateOneUser)
 
 router.delete('/:id',[
+    validateJWT,
     check('id').custom(dbValidators.validUserId),
     validateFields
 ], deleteOneUser)

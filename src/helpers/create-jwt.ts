@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken'
+import config from '../config'
 
 export const createJwt = (uid: string = ''): Promise<string> => {
 
@@ -7,7 +8,7 @@ export const createJwt = (uid: string = ''): Promise<string> => {
         const payload = { uid }
 
         //Función sign recibe como parametros: payload, secret key, opciones y un callback 
-        jwt.sign(payload, process.env.SECRETORPRIVATEKEY!, { expiresIn: '2h' },
+        jwt.sign(payload, config.secretKeyJWT, { expiresIn: '2h' },
             (error, token) => {
                 if (error) {
                     console.log(error);
