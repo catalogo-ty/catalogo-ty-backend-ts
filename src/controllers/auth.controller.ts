@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { IUser } from "../interfaces/user.interface";
 import * as authService from '../services/auth.service'
 
 export const login = async (req: Request, res: Response) => {
@@ -15,7 +14,7 @@ export const login = async (req: Request, res: Response) => {
         }
 
         // Verificar el status del usuario
-        if (user?.status === false) {
+        if (user.status === false) {
             return res.status(400).json({
                 msg: `Correo y/o contraseña incorrectos`
             })
@@ -29,7 +28,7 @@ export const login = async (req: Request, res: Response) => {
             })
         }
         // LLamar a servicio para generar JWT
-        const token = await authService.generarJWT(user?._id!)
+        const token = await authService.generarJWT(user._id!)
 
         res.json({
             mgs: 'Login OK!!',
