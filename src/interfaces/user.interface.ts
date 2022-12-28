@@ -9,3 +9,9 @@ export interface IUser {
     status?:boolean
     google?: boolean
 }
+
+export interface PayloadJWT {
+    uid: string
+    iat: number
+    exp: number
+} 
