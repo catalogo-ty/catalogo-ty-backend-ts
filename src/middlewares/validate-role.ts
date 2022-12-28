@@ -20,3 +20,17 @@ export const isAdminRole = (req: Request, res: Response, next: NextFunction) => 
 
     next();
 }
+
+// Operador rest para generar un array de los parámetros
+export const validRole = (...roles: string[] ) =>{
+
+    return (req: Request, res: Response, next: NextFunction) => {
+        // Si no tiene rol admin o ventas no podrá realizar petición
+        if (!roles.includes(req.authUser?.role!))
+            return res.status(401).send({
+                msg: `Usuario no tiene rol válido`
+            })
+
+        next();
+    }
+}

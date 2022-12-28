@@ -9,7 +9,7 @@ import {
 import * as dbValidators from "../../helpers/db-validators";
 import { validateFields } from "../../middlewares/validate-fields";
 import { validateJWT } from "../../middlewares/validate-jwt";
-import { isAdminRole } from "../../middlewares/validate-role";
+import { isAdminRole, validRole } from "../../middlewares/validate-role";
 
 const router = Router();
 
@@ -22,7 +22,7 @@ router.get('/:id',[
 
 router.post('/',[
     validateJWT,
-    isAdminRole,
+    //isAdminRole,
     check('name', 'El nombre es obligatorio').not().isEmpty(), // revisar que no este vacío
     check('email', 'El correo no es válido').isEmail(),
     check('email').custom(dbValidators.isValidEmail),
@@ -33,14 +33,15 @@ router.post('/',[
 
 router.put('/:id',[
     validateJWT,
-    isAdminRole,
+    //isAdminRole,
     check('id').custom(dbValidators.validUserId),
     validateFields
 ], updateOneUser)
 
 router.delete('/:id',[
     validateJWT,
-    isAdminRole,
+    //isAdminRole,
+    validRole('ADMIN_ROLE','VENTAS_ROLE'),
     check('id').custom(dbValidators.validUserId),
     validateFields
 ], deleteOneUser)
