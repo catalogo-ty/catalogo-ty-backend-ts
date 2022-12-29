@@ -9,8 +9,9 @@ export default {
   secretKeyJWT: process.env.SECRETORPRIVATEKEY || '',
 
   pathV1: {
-    users: '/api/v1/users/',
     auth: '/api/v1/auth/',
+    users: '/api/v1/users/',
+    categories: '/api/v1/categories/',
 
   }
 

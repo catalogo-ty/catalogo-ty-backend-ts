@@ -2,6 +2,7 @@ import express, {Application, Response, Request} from "express";
 import cors from "cors";
 import userRoutes from "../v1/routes/user.routes";
 import authRoutes from '../v1/routes/auth.routes'
+import categoriesRoutes from '../v1/routes/categories.routes'
 import config from ".";
 import { dbConnection } from "./db";
 
@@ -35,6 +36,7 @@ export class Server {
     routes(){
         this.app.use(config.pathV1.users, userRoutes);
         this.app.use(config.pathV1.auth, authRoutes );
+        this.app.use(config.pathV1.categories, categoriesRoutes)
 
         this.app.get('*', (req: Request,res:Response) => {
             res.json({
