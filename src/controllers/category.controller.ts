@@ -19,3 +19,16 @@ export const getAllCategories = async (req: Request, res: Response) => {
         })
     }
 }
+
+export const getOneCategory = async(req: Request, res: Response) => {
+
+    const { id } = req.params
+
+    try {
+        const category = await categoryService.getOneCategory(id);
+        res.json(category)
+    } catch (error) {
+        console.log(error);        
+    }
+
+}

@@ -25,7 +25,7 @@ export const createNewUser = async (req: Request, res: Response) => {
 
     const user = req.body;
 
-    const newUser = await userService.createNewUser(user);
+    const newUser = await userService.createNewUser(user);  
     
     res.status(201).json(newUser)
 

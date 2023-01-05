@@ -21,3 +21,16 @@ export const getAllCategories = async (limit: number, from: number) => {
     }
 
 }
+
+export const getOneCategory = async (id: string) => {
+
+
+    try {
+        const category = await Category.findById(id);
+        return category
+    } catch (error) {
+        console.log(error);
+        return null
+    }
+
+}
